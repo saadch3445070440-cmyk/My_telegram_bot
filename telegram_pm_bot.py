@@ -64,4 +64,4 @@ if __name__ == "__main__":
     # 2. Telegram bot ko polling par laga rahe hain
     print("Bot polling started...")
     bot.infinity_polling()
-```
+
