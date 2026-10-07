@@ -1,4 +1,5 @@
 import telebot
+import sqlite3
 import os 
 from threading import Thread
 
