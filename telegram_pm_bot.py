@@ -5,7 +5,7 @@ import telebot
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 # ================= CONFIGURATION =================
-BOT_TOKEN ="8545222508:AAHB6XemaS2GWPU5djLcMbanVEJSsdU0JcI" # Apna token yahan complete rakhein
+BOT_TOKEN = "8545222508:AAHB6XemaS2GWPU5djLcMbanVEJSsdU0JcI"# Apna token yahan complete rakhein
 ADMIN_ID = 8933363928
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -13,8 +13,8 @@ bot = telebot.TeleBot(BOT_TOKEN)
 # ================= TELEGRAM BOT LOGIC =================
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    # Screenshot ke mutabiq exact custom welcome message aur aesthetic fonts
-    user_first_name = message.from_user.first_name if message.from_user.first_name else "s4saad"
+    # User ka first name ya fallback
+    user_first_name = message.from_user.first_name if message.from_user.first_name else "User"
     
     welcome_text = (
         f"THANK YOU, #𝗦-ᶻᶻᶻ {user_first_name} ❤️\n"
@@ -29,7 +29,6 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    # Screenshot walay aesthetic style mein bot ka reply format
     fancy_response = (
         f"╭━━━ 🤖 *#𝗦-💤 Response* ━━━╮\n\n"
         f"💬 Your Message:\n`{message.text}`\n\n"
@@ -38,7 +37,7 @@ def echo_all(message):
     )
     bot.reply_to(message, fancy_response, parse_mode='Markdown')
 
-# ================= RENDER PORT REQUIREMENT SERVER (AT THE VERY END) =================
+# ================= RENDER PORT REQUIREMENT SERVER =================
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -46,8 +45,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(b"Bot is active and running!")
 
 def run_server():
-    port = int(os.environ.f("PORT", 10000)) if hasattr(os, 'environ') else 10000
-    # Safe port fetching for Render
     try:
         port = int(os.environ.get("PORT", 10000))
     except:
@@ -64,4 +61,3 @@ if __name__ == "__main__":
     # 2. Telegram bot ko polling par laga rahe hain
     print("Bot polling started...")
     bot.infinity_polling()
-
