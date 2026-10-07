@@ -1,6 +1,5 @@
 import os 
-from threading 
-import Thread
+from threading import Thread
 
 # ------------------------------------------------------------------
 # CONFIGURATION
