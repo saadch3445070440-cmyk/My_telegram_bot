@@ -1,5 +1,6 @@
-import telebot
-import sqlite3
+import os 
+from threading 
+import Thread
 
 # ------------------------------------------------------------------
 # CONFIGURATION
@@ -96,3 +97,19 @@ if __name__ == "__main__":
     print("🤖 Order / PM Forwarder Bot (with SQLite Database) is running...")
     bot.infinity_polling(timeout=60, long_polling_timeout=60)
   
+from http.server import HTTPServer, BaseHTTPRequestHandler
+
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot is running!")
+
+def run_server():
+    server_address = ('0.0.0.0', 10000)
+    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    httpd.serve_forever()
+
+# Server ko background thread mein chalane ke liye
+Thread(target=run_server).start()
+        
