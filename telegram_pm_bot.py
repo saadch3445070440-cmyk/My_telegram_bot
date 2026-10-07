@@ -1,11 +1,10 @@
-
 import os
 from threading import Thread
 import telebot
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 # ================= CONFIGURATION =================
-BOT_TOKEN = "8545222508:AAHB6XemaS2GWPU5djLcMbanVEJSsdU0JcI"# Apna token yahan complete rakhein
+BOT_TOKEN = "8545222508:AAEG1KXKBpKRED..."  # Apna token yahan complete rakhein
 ADMIN_ID = 8933363928
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -13,7 +12,6 @@ bot = telebot.TeleBot(BOT_TOKEN)
 # ================= TELEGRAM BOT LOGIC =================
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    # User ka first name ya fallback
     user_first_name = message.from_user.first_name if message.from_user.first_name else "User"
     
     welcome_text = (
@@ -23,19 +21,19 @@ def send_welcome(message):
         f"👤 UsERNAMe: @s4saad\n"
         f"💌 YOUR MESSaGE WILL BE SENT TO #𝗦-💤\n\n"
         f"PLEASe SEND YOUR MESSAGE BELOW.\n\n"
-        f"_This bot was made using custom python script_"
+        f"This bot was made using custom python script"
     )
-    bot.reply_to(message, welcome_text, parse_mode='Markdown')
+    bot.reply_to(message, welcome_text)
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     fancy_response = (
-        f"╭━━━ 🤖 *#𝗦-💤 Response* ━━━╮\n\n"
-        f"💬 Your Message:\n`{message.text}`\n\n"
-        f"✨ *Status:* Successfully sent to @s4saad!\n"
+        f"╭━━━ 🤖 #𝗦-💤 Response ━━━╮\n\n"
+        f"💬 Your Message:\n{message.text}\n\n"
+        f"✨ Status: Successfully sent to @s4saad!\n"
         f"╰━━━━━━━━━━━━━━━━━━━━╯"
     )
-    bot.reply_to(message, fancy_response, parse_mode='Markdown')
+    bot.reply_to(message, fancy_response)
 
 # ================= RENDER PORT REQUIREMENT SERVER =================
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -55,9 +53,6 @@ def run_server():
     httpd.serve_forever()
 
 if __name__ == "__main__":
-    # 1. Background mein HTTP server start kar rahe hain taake Render port detect kar le
     Thread(target=run_server, daemon=True).start()
-    
-    # 2. Telegram bot ko polling par laga rahe hain
     print("Bot polling started...")
-    bot.infinity_polling()
+    bot.infinity_polling(skip_pending=True)
