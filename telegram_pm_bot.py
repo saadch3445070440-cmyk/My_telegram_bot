@@ -1,3 +1,4 @@
+
 import os
 from threading import Thread
 import telebot
@@ -8,7 +9,6 @@ BOT_TOKEN = "8545222508:AAHB6XemaS2GWPU5djLcMbanVEJSsdU0JcI"  # Apna token yahan
 ADMIN_ID = 8933363928
 
 bot = telebot.TeleBot(BOT_TOKEN)
-
 # ================= TELEGRAM BOT LOGIC =================
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -35,7 +35,7 @@ def echo_all(message):
     )
     bot.reply_to(message, fancy_response)
 
-# ================= RENDER PORT REQUIREMENT SERVER =================
+# ================= RENDER WEB SERVER & BOT POLLING =================
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -53,6 +53,15 @@ def run_server():
     httpd.serve_forever()
 
 if __name__ == "__main__":
+    # Purane saare webhooks clear kar rahe hain taake 409 conflict na aaye
+    try:
+        bot.remove_webhook()
+    except Exception:
+        pass
+
+    # HTTP Server ko background thread mein chala rahe hain
     Thread(target=run_server, daemon=True).start()
+    
     print("Bot polling started...")
-    bot.infinity_polling(skip_pending=True)
+    # Har 2 seconds ke delay ke sath safe polling
+    bot.infinity_polling(timeout=10, long_polling_timeout=5, skip_pending=True)
