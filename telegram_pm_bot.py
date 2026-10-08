@@ -5,7 +5,7 @@ import telebot
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 # ================= CONFIGURATION =================
-BOT_TOKEN = "8545222508:AAHB6XemaS2GWPU5djLcMbanVEJSsdU0JcI"  # Apna token yahan complete rakhein
+BOT_TOKEN ="8545222508:AAFVWmEvChmXybSjBCaB8IU58IulKgyXib4" # Apna token yahan complete rakhein
 ADMIN_ID = 8933363928
 
 bot = telebot.TeleBot(BOT_TOKEN)
