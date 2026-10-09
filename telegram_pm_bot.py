@@ -15,22 +15,22 @@ def send_welcome(message):
     user_first_name = message.from_user.first_name if message.from_user.first_name else "User"
     
     welcome_text = (
-        f"THANK YOU, #𝗦-ᶻᶻᶻ {user_first_name} ❤️\n"
-        f"✨ THANKS FOR UsinG THIS BOT ✨\n"
-        f"THiS BOT Is FOR CONTACTING #𝗦-💤 🧸\n"
-        f"👤 UsERNAMe: @s4saad\n"
-        f"💌 YOUR MESSaGE WILL BE SENT TO #𝗦-💤\n\n"
-        f"PLEASe SEND YOUR MESSAGE BELOW.\n\n"
-        f"This bot was made using custom python script"
+        f"ᴛʜᴀɴᴋ ʏᴏᴜ;{user_first_name} ❤️\n"
+        f"✨ ᴛʜᴀɴᴋꜱ ꜰᴏʀ ᴜꜱɪɴɢ ᴛʜɪꜱ ʙᴏᴛ  ✨\n"
+        f"ᴛʜɪꜱ ʙᴏᴛ ɪꜱ ꜰᴏʀ ᴄᴏɴᴛᴀᴄᴛɪɴɢ #𝗦-💤 🧸\n"
+        f"👤 ᴜꜱᴇʀɴᴀᴍᴇ: @s4saad\n"
+     f"💌 ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡɪʟʟ ʙᴇ ꜰᴏʀᴡᴀᴅᴇᴅ ᴛᴏ #𝗦-💤\n\n"
+        f"ᴘʟᴇᴀꜱᴇ ꜱᴇɴᴅ ʏᴏᴜʀ ᴍᴇꜱꜱᴀɢᴇ ʙᴇʟᴏᴡ.\n\n"
+        f"ᴛʜɪꜱ ʙᴏᴛ ᴡᴀꜱ ᴍᴀᴅᴇ ᴜꜱɪɴɢ ᴄᴜꜱᴛᴏᴍ ᴘʏᴛʜᴏɴ ꜱᴄʀɪᴘᴛ"
     )
     bot.reply_to(message, welcome_text)
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     fancy_response = (
-        f"╭━━━ 🤖 #𝗦-💤 Response ━━━╮\n\n"
-        f"💬 Your Message:\n{message.text}\n\n"
-        f"✨ Status: Successfully sent to @s4saad!\n"
+        f"╭━━━ 🤖 #𝗦-💤 ʀᴇꜱᴘᴏɴꜱᴇ ━━━╮\n\n"
+        f"💬 ʏᴏᴜʀ ᴍᴇꜱꜱᴀɢᴇ:\n{message.text}\n\n"
+        f"✨ ꜱᴛᴀᴛᴜꜱ: ꜱᴜᴄᴄᴇꜱꜱꜰʏʟʟʏ ꜱᴇɴᴛ ᴛᴏ @s4saad!\n"
         f"╰━━━━━━━━━━━━━━━━━━━━╯"
     )
     bot.reply_to(message, fancy_response)
